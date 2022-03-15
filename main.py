@@ -453,7 +453,29 @@ class AnimalShelter:
             print('error inserting data into staff table')
 
 
-
+    def insert_into_staff_roles(self):
+        '''inserts data into staff_roles table'''
+        self.conn = None
+        try:
+            self.conn = psycopg2.connect(**self.params)
+            self.cursor = self.conn.cursor()
+            self.cursor.execute(
+                '''
+                INSERT INTO	Staff_Roles (Role)
+                VALUES
+                ('Assistant'),
+                ('Janitor'),
+                ('Manager'),
+                ('Receptionist'),
+                ('Veterinarian');
+                '''
+            )
+            self.conn.commit()
+            print('data inserted successfully into staff_roles table')
+            self.cursor.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            print('error inserting data into staff_roles table')
 
 
 if __name__=='__main__':
@@ -464,6 +486,8 @@ if __name__=='__main__':
     # animal_shelter.insert_into_schemas()
     # animal_shelter.insert_into_animals()
     # animal_shelter.insert_into_persons()
-    animal_shelter.insert_into_staff()
+    # animal_shelter.insert_into_staff()
+    animal_shelter.insert_into_staff_roles()
+
 
 
