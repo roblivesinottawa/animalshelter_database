@@ -138,6 +138,7 @@ class AnimalShelter:
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
 
+# this method inserts data intp the schemas
     def insert_into_schemas(self):
         '''inserts data into schemas'''
         self.conn = None
@@ -163,6 +164,7 @@ class AnimalShelter:
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
 
+# this method inserts data into the animals table
     def insert_into_animals(self):
         '''inserts data into animals'''
         self.conn = None
@@ -283,7 +285,7 @@ class AnimalShelter:
             print('error inserting data into animals table')
 
 
-
+# this method inserts data into the persons table
     def insert_into_persons(self):
         '''inserts data into persons table'''
         self.conn = None
@@ -423,7 +425,7 @@ class AnimalShelter:
             print(error)
             print('error inserting data into persons table')
 
-
+# this method inserts data intp the staff table
     def insert_into_staff(self):
         '''inserts data into staff table'''
         self.conn = None
@@ -452,7 +454,7 @@ class AnimalShelter:
             print(error)
             print('error inserting data into staff table')
 
-
+# this method inserts data into the staff_roles table
     def insert_into_staff_roles(self):
         '''inserts data into staff_roles table'''
         self.conn = None
@@ -476,6 +478,240 @@ class AnimalShelter:
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
             print('error inserting data into staff_roles table')
+    
+# this method inserts data into the staff_assignments table   
+    def insert_into_staff_assignments(self):
+        '''inserts data into staff_assignments table'''
+        self.conn = None
+        try:
+            self.conn = psycopg2.connect(**self.params)
+            self.cursor = self.conn.cursor()
+            self.cursor.execute(
+                '''
+                INSERT INTO	Staff_Assignments (Email, Role, Assigned)
+                VALUES
+                ('ashley.flores@animalshelter.com', 'Veterinarian', CAST('2016-01-01' AS DATE)),
+                ('dennis.hill@animalshelter.com', 'Veterinarian', CAST('2018-10-07' AS DATE)),
+                ('frances.hill@animalshelter.com', 'Receptionist', CAST('2016-01-01' AS DATE)),
+                ('gerald.reyes@animalshelter.com', 'Assistant', CAST('2018-03-20' AS DATE)),
+                ('patrick.hughes@animalshelter.com', 'Receptionist', CAST('2018-12-15' AS DATE)),
+                ('robin.murphy@animalshelter.com', 'Assistant', CAST('2018-08-15' AS DATE)),
+                ('sharon.davis@animalshelter.com', 'Manager', CAST('2016-01-01' AS DATE)),
+                ('wanda.myers@animalshelter.com', 'Assistant', CAST('2016-01-01' AS DATE)),
+                ('wayne.carter@animalshelter.com', 'Assistant', CAST('2018-04-02' AS DATE));
+                '''
+            )
+            self.conn.commit()
+            print('data inserted successfully into staff_assignments table')
+            self.cursor.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            print('error inserting data into staff_assignments table')
+    
+# this method inserts data into the adoptions table 
+    def insert_into_adoptions_table(self):
+        '''inserts data into adoptions table'''
+        self.conn = None
+        try:
+            self.conn = psycopg2.connect(**self.params)
+            self.cursor = self.conn.cursor()
+            self.cursor.execute(
+                '''
+                INSERT INTO	Adoptions (Name, Species, Adopter_Email, Adoption_Date, Adoption_Fee)
+                VALUES
+                ('Abby', 'Dog', 'patrick.hughes@animalshelter.com', CAST('2018-08-30' AS DATE), 58),
+                ('Ace', 'Dog', 'justin.ruiz@hotmail.com', CAST('2019-10-26' AS DATE), 68),
+                ('Archie', 'Cat', 'patrick.hughes@animalshelter.com', CAST('2018-08-30' AS DATE), 82),
+                ('Bailey', 'Dog', 'wayne.turner@icloud.com', CAST('2019-07-26' AS DATE), 50),
+                ('Baloo', 'Rabbit', 'jesse.cox@yahoo.com', CAST('2017-12-16' AS DATE), 58),
+                ('Beau', 'Dog', 'shirley.williams@outlook.com', CAST('2018-04-15' AS DATE), 90),
+                ('Benji', 'Dog', 'sharon.davis@animalshelter.com', CAST('2018-11-18' AS DATE), 97),
+                ('Brody', 'Dog', 'george.scott@hotmail.com', CAST('2019-02-21' AS DATE), 83),
+                ('Brutus', 'Dog', 'virginia.baker@gmail.com', CAST('2019-01-28' AS DATE), 66),
+                ('Buddy', 'Cat', 'karen.smith@icloud.com', CAST('2019-09-27' AS DATE), 73),
+                ('Callie', 'Dog', 'peter.smith@hotmail.com', CAST('2018-09-06' AS DATE), 57),
+                ('Chico', 'Dog', 'lori.smith@icloud.com', CAST('2019-12-29' AS DATE), 86),
+                ('Chubby', 'Rabbit', 'adam.brown@gmail.com', CAST('2018-05-27' AS DATE), 65),
+                ('Cleo', 'Cat', 'melissa.lopez@gmail.com', CAST('2019-12-15' AS DATE), 56),
+                ('Cooper', 'Dog', 'lisa.perez@icloud.com', CAST('2018-01-10' AS DATE), 61),
+                ('Cosmo', 'Cat', 'diane.thompson@hotmail.com', CAST('2019-06-16' AS DATE), 100),
+                ('Dolly', 'Dog', 'laura.young@gmail.com', CAST('2019-12-30' AS DATE), 93),
+                ('Emma', 'Dog', 'melissa.moore@icloud.com', CAST('2019-12-28' AS DATE), 76),
+                ('Fiona', 'Cat', 'jerry.mitchell@icloud.com', CAST('2018-02-23' AS DATE), 96),
+                ('George', 'Cat', 'kevin.diaz@hotmail.com', CAST('2018-09-13' AS DATE), 97),
+                ('Ginger', 'Dog', 'julie.adams@gmail.com', CAST('2017-03-07' AS DATE), 79),
+                ('Gizmo', 'Dog', 'lori.smith@icloud.com', CAST('2019-12-26' AS DATE), 54),
+                ('Gracie', 'Cat', 'gerald.reyes@animalshelter.com', CAST('2017-09-09' AS DATE), 82),
+                ('Gus', 'Dog', 'frances.cook@yahoo.com', CAST('2018-12-29' AS DATE), 96),
+                ('Hobbes', 'Cat', 'timothy.anderson@gmail.com', CAST('2017-11-08' AS DATE), 73),
+                ('Hudini', 'Rabbit', 'kathy.thomas@gmail.com', CAST('2019-12-24' AS DATE), 57),
+                ('Humphrey', 'Rabbit', 'kelly.allen@hotmail.com', CAST('2019-01-17' AS DATE), 85),
+                ('Jake', 'Dog', 'shirley.williams@outlook.com', CAST('2019-11-12' AS DATE), 84),
+                ('Jax', 'Dog', 'wayne.turner@icloud.com', CAST('2018-04-01' AS DATE), 85),
+                ('Kiki', 'Cat', 'james.ramos@hotmail.com', CAST('2019-12-01' AS DATE), 87),
+                ('King', 'Dog', 'charles.phillips@gmail.com', CAST('2019-07-18' AS DATE), 57),
+                ('Lexi', 'Dog', 'virginia.baker@gmail.com', CAST('2018-07-28' AS DATE), 54),
+                ('Lily', 'Dog', 'mildred.gray@yahoo.com', CAST('2019-09-01' AS DATE), 99),
+                ('Lucy', 'Dog', 'richard.castillo@icloud.com', CAST('2018-07-07' AS DATE), 78),
+                ('Luke', 'Dog', 'ryan.garcia@hotmail.com', CAST('2018-05-04' AS DATE), 65),
+                ('Luna', 'Rabbit', 'ryan.wright@hotmail.com', CAST('2019-04-14' AS DATE), 55),
+                ('Mac', 'Dog', 'randy.bailey@icloud.com', CAST('2018-06-12' AS DATE), 51),
+                ('Maddie', 'Dog', 'theresa.carter@icloud.com', CAST('2017-09-18' AS DATE), 87),
+                ('Max', 'Dog', 'roy.rogers@hotmail.com', CAST('2017-09-23' AS DATE), 62),
+                ('Millie', 'Dog', 'richard.castillo@icloud.com', CAST('2018-05-21' AS DATE), 98),
+                ('Miss Kitty', 'Cat', 'anna.thompson@hotmail.com', CAST('2019-11-11' AS DATE), 83),
+                ('Misty', 'Cat', 'frances.hill@animalshelter.com', CAST('2019-12-13' AS DATE), 86),
+                ('Mocha', 'Dog', 'roger.adams@hotmail.com', CAST('2019-07-22' AS DATE), 93),
+                ('Nala', 'Dog', 'wayne.turner@icloud.com', CAST('2019-07-26' AS DATE), 77),
+                ('Nova', 'Cat', 'walter.edwards@icloud.com', CAST('2018-09-03' AS DATE), 98),
+                ('Oscar', 'Cat', 'bruce.harris@hotmail.com', CAST('2018-11-19' AS DATE), 79),
+                ('Otis', 'Dog', 'doris.young@icloud.com', CAST('2019-08-02' AS DATE), 51),
+                ('Peanut', 'Rabbit', 'richard.castillo@icloud.com', CAST('2019-03-21' AS DATE), 83),
+                ('Pearl', 'Cat', 'doris.young@icloud.com', CAST('2019-10-13' AS DATE), 94),
+                ('Penelope', 'Cat', 'emily.perez@gmail.com', CAST('2018-06-02' AS DATE), 54),
+                ('Penelope', 'Dog', 'virginia.baker@gmail.com', CAST('2018-10-22' AS DATE), 54),
+                ('Penny', 'Cat', 'roy.rogers@hotmail.com', CAST('2017-04-08' AS DATE), 66),
+                ('Piper', 'Dog', 'margaret.campbell@hotmail.com', CAST('2016-06-16' AS DATE), 61),
+                ('Poppy', 'Dog', 'phyllis.moore@gmail.com', CAST('2019-03-15' AS DATE), 93),
+                ('Prince', 'Dog', 'virginia.baker@gmail.com', CAST('2018-03-13' AS DATE), 95),
+                ('Pumpkin', 'Cat', 'scott.gutierrez@gmail.com', CAST('2019-09-12' AS DATE), 64),
+                ('Ranger', 'Dog', 'charles.phillips@gmail.com', CAST('2019-01-06' AS DATE), 61),
+                ('Remi / Remy', 'Dog', 'jesse.cox@yahoo.com', CAST('2019-04-29' AS DATE), 61),
+                ('Riley', 'Dog', 'sara.nelson@icloud.com', CAST('2019-09-30' AS DATE), 54),
+                ('Rocky', 'Cat', 'patricia.wright@icloud.com', CAST('2019-11-21' AS DATE), 60),
+                ('Roxy', 'Dog', 'julie.adams@gmail.com', CAST('2019-08-07' AS DATE), 86),
+                ('Rusty', 'Dog', 'jacqueline.phillips@gmail.com', CAST('2016-04-23' AS DATE), 50),
+                ('Sadie', 'Cat', 'jonathan.mez@hotmail.com', CAST('2018-12-07' AS DATE), 85),
+                ('Salem', 'Cat', 'bruce.cook@icloud.com', CAST('2018-02-09' AS DATE), 55),
+                ('Sam', 'Cat', 'frances.cook@yahoo.com', CAST('2018-12-29' AS DATE), 51),
+                ('Shadow', 'Dog', 'wayne.turner@icloud.com', CAST('2018-04-01' AS DATE), 73),
+                ('Skye', 'Dog', 'jerry.mitchell@icloud.com', CAST('2016-09-25' AS DATE), 67),
+                ('Thomas', 'Cat', 'george.scott@hotmail.com', CAST('2019-05-23' AS DATE), 96),
+                ('Toby', 'Rabbit', 'phyllis.moore@gmail.com', CAST('2019-11-26' AS DATE), 96),
+                ('Whitney', 'Rabbit', 'margaret.campbell@hotmail.com', CAST('2019-07-17' AS DATE), 75);
+                '''
+            )
+            self.conn.commit()
+            print('data inserted successfully into adoptions table')
+            self.cursor.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            print('error inserting data into adoptions table')
+
+# this method inserts data into the vaccinations table 
+    def insert_into_vaccinations_table(self):
+        '''inserts data into vaccinations table'''
+        self.conn = None
+        try:
+            self.conn = psycopg2.connect(**self.params)
+            self.cursor = self.conn.cursor()
+            self.cursor.execute(
+                '''
+                INSERT INTO	Vaccinations (Name, Species, Vaccination_Time, Vaccine, Batch, Comments, Email)
+                VALUES
+                ('Abby', 'Dog', CAST('2017-04-19T09:01:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'N-178784096', NULL, 'ashley.flores@animalshelter.com'),
+                ('Abby', 'Dog', CAST('2018-04-19T10:44:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'L-107687717', NULL, 'wanda.myers@animalshelter.com'),
+                ('Angel', 'Dog', CAST('2017-05-04T10:38:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'L-353180534', NULL, 'wanda.myers@animalshelter.com'),
+                ('Angel', 'Dog', CAST('2018-05-04T09:47:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'A-271237673', NULL, 'wanda.myers@animalshelter.com'),
+                ('Angel', 'Dog', CAST('2017-05-04T12:49:00.0000000' AS TIMESTAMP), 'Rabies', 'V-180603107', NULL, 'wanda.myers@animalshelter.com'),
+                ('Angel', 'Dog', CAST('2018-05-04T11:18:00.0000000' AS TIMESTAMP), 'Rabies', 'P-118670651', NULL, 'ashley.flores@animalshelter.com'),
+                ('Archie', 'Cat', CAST('2017-11-20T09:35:00.0000000' AS TIMESTAMP), 'Calicivirus', 'J-460970834', NULL, 'ashley.flores@animalshelter.com'),
+                ('Archie', 'Cat', CAST('2017-11-20T13:25:00.0000000' AS TIMESTAMP), 'Panleukopenia Virus', 'F-164759480', NULL, 'ashley.flores@animalshelter.com'),
+                ('Aspen', 'Dog', CAST('2016-09-28T07:36:00.0000000' AS TIMESTAMP), 'Adenovirus', 'M-471677500', NULL, 'wanda.myers@animalshelter.com'),
+                ('Aspen', 'Dog', CAST('2017-09-29T12:35:00.0000000' AS TIMESTAMP), 'Adenovirus', 'V-256362103', NULL, 'wanda.myers@animalshelter.com'),
+                ('Aspen', 'Dog', CAST('2016-09-28T10:01:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'N-147820695', NULL, 'ashley.flores@animalshelter.com'),
+                ('Aspen', 'Dog', CAST('2016-09-28T07:41:00.0000000' AS TIMESTAMP), 'Rabies', 'K-430117096', NULL, 'wanda.myers@animalshelter.com'),
+                ('Aspen', 'Dog', CAST('2017-09-29T07:32:00.0000000' AS TIMESTAMP), 'Rabies', 'B-384980558', NULL, 'ashley.flores@animalshelter.com'),
+                ('Baloo', 'Rabbit', CAST('2016-09-01T07:00:00.0000000' AS TIMESTAMP), 'Rabies', 'V-411899194', NULL, 'wanda.myers@animalshelter.com'),
+                ('Benny', 'Dog', CAST('2019-01-02T09:44:00.0000000' AS TIMESTAMP), 'Adenovirus', 'D-237655965', NULL, 'ashley.flores@animalshelter.com'),
+                ('Benny', 'Dog', CAST('2019-01-02T13:19:00.0000000' AS TIMESTAMP), 'Rabies', 'H-405534627', NULL, 'robin.murphy@animalshelter.com'),
+                ('Bon bon', 'Rabbit', CAST('2018-12-27T13:39:00.0000000' AS TIMESTAMP), 'Myxomatosis', 'I-176340730', NULL, 'dennis.hill@animalshelter.com'),
+                ('Bon bon', 'Rabbit', CAST('2019-12-27T13:32:00.0000000' AS TIMESTAMP), 'Myxomatosis', 'O-237649828', NULL, 'ashley.flores@animalshelter.com'),
+                ('Bon bon', 'Rabbit', CAST('2016-12-26T12:08:00.0000000' AS TIMESTAMP), 'Rabies', 'N-100666243', NULL, 'wanda.myers@animalshelter.com'),
+                ('Bon bon', 'Rabbit', CAST('2017-12-27T10:09:00.0000000' AS TIMESTAMP), 'Rabies', 'Z-365201947', NULL, 'wanda.myers@animalshelter.com'),
+                ('Bon bon', 'Rabbit', CAST('2018-12-27T11:09:00.0000000' AS TIMESTAMP), 'Rabies', 'O-282699517', NULL, 'robin.murphy@animalshelter.com'),
+                ('Bon bon', 'Rabbit', CAST('2019-12-27T09:23:00.0000000' AS TIMESTAMP), 'Rabies', 'C-219506249', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Boomer', 'Dog', CAST('2019-09-03T11:58:00.0000000' AS TIMESTAMP), 'Rabies', 'D-353567999', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Brutus', 'Dog', CAST('2018-11-28T12:26:00.0000000' AS TIMESTAMP), 'Adenovirus', 'K-99075733 ', NULL, 'wanda.myers@animalshelter.com'),
+                ('Brutus', 'Dog', CAST('2018-11-28T07:17:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'U-104436672', NULL, 'wayne.carter@animalshelter.com'),
+                ('Cooper', 'Dog', CAST('2017-10-13T09:41:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'K-334308175', NULL, 'ashley.flores@animalshelter.com'),
+                ('Dolly', 'Dog', CAST('2018-09-27T08:16:00.0000000' AS TIMESTAMP), 'Adenovirus', 'F-202325284', NULL, 'ashley.flores@animalshelter.com'),
+                ('Dolly', 'Dog', CAST('2019-09-27T10:29:00.0000000' AS TIMESTAMP), 'Adenovirus', 'O-402995062', NULL, 'wayne.carter@animalshelter.com'),
+                ('Dolly', 'Dog', CAST('2018-09-27T14:45:00.0000000' AS TIMESTAMP), 'Rabies', 'T-302536393', NULL, 'robin.murphy@animalshelter.com'),
+                ('Fiona', 'Cat', CAST('2017-12-18T11:15:00.0000000' AS TIMESTAMP), 'Calicivirus', 'C-259489422', NULL, 'wanda.myers@animalshelter.com'),
+                ('Fiona', 'Cat', CAST('2017-12-18T14:17:00.0000000' AS TIMESTAMP), 'Panleukopenia Virus', 'Y-412311976', NULL, 'wanda.myers@animalshelter.com'),
+                ('Ginger', 'Dog', CAST('2017-03-07T08:33:00.0000000' AS TIMESTAMP), 'Adenovirus', 'B-141623834', NULL, 'wanda.myers@animalshelter.com'),
+                ('Gizmo', 'Dog', CAST('2019-08-22T08:52:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'H-384444123', NULL, 'wayne.carter@animalshelter.com'),
+                ('Hobbes', 'Cat', CAST('2016-12-26T12:54:00.0000000' AS TIMESTAMP), 'Panleukopenia Virus', 'X-224232315', NULL, 'ashley.flores@animalshelter.com'),
+                ('Holly', 'Dog', CAST('2019-07-15T13:14:00.0000000' AS TIMESTAMP), 'Rabies', 'D-117727724', NULL, 'robin.murphy@animalshelter.com'),
+                ('Humphrey', 'Rabbit', CAST('2018-08-28T08:09:00.0000000' AS TIMESTAMP), 'Myxomatosis', 'H-250858054', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Humphrey', 'Rabbit', CAST('2018-08-28T09:41:00.0000000' AS TIMESTAMP), 'Rabies', 'U-255625602', NULL, 'robin.murphy@animalshelter.com'),
+                ('Humphrey', 'Rabbit', CAST('2018-08-28T10:08:00.0000000' AS TIMESTAMP), 'Viral Haemorrhagic Disease', 'I-404631209', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Jake', 'Dog', CAST('2017-12-08T07:46:00.0000000' AS TIMESTAMP), 'Adenovirus', 'T-332043529', NULL, 'wanda.myers@animalshelter.com'),
+                ('Lucy', 'Dog', CAST('2018-05-22T07:46:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'L-258258441', NULL, 'ashley.flores@animalshelter.com'),
+                ('Luna', 'Dog', CAST('2019-09-03T13:30:00.0000000' AS TIMESTAMP), 'Adenovirus', 'O-245391721', NULL, 'wayne.carter@animalshelter.com'),
+                ('Misty', 'Cat', CAST('2019-08-09T09:13:00.0000000' AS TIMESTAMP), 'Calicivirus', 'I-259629161', NULL, 'dennis.hill@animalshelter.com'),
+                ('Misty', 'Cat', CAST('2019-08-09T09:00:00.0000000' AS TIMESTAMP), 'Panleukopenia Virus', 'Y-383139393', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Nala', 'Dog', CAST('2019-07-26T13:15:00.0000000' AS TIMESTAMP), 'Adenovirus', 'S-115426515', NULL, 'ashley.flores@animalshelter.com'),
+                ('Nova', 'Cat', CAST('2018-08-13T14:32:00.0000000' AS TIMESTAMP), 'Leukemia Virus', 'E-489987614', NULL, 'ashley.flores@animalshelter.com'),
+                ('Nova', 'Cat', CAST('2018-08-13T11:35:00.0000000' AS TIMESTAMP), 'Rabies', 'C-386537135', NULL, 'ashley.flores@animalshelter.com'),
+                ('Odin', 'Dog', CAST('2019-10-25T14:02:00.0000000' AS TIMESTAMP), 'Adenovirus', 'Z-490194302', NULL, 'robin.murphy@animalshelter.com'),
+                ('Odin', 'Dog', CAST('2017-10-25T07:58:00.0000000' AS TIMESTAMP), 'Rabies', 'N-322162073', NULL, 'ashley.flores@animalshelter.com'),
+                ('Odin', 'Dog', CAST('2019-10-25T09:11:00.0000000' AS TIMESTAMP), 'Rabies', 'L-181928453', NULL, 'wayne.carter@animalshelter.com'),
+                ('Oscar', 'Cat', CAST('2018-03-22T07:15:00.0000000' AS TIMESTAMP), 'Herpesvirus', 'L-196623340', NULL, 'wanda.myers@animalshelter.com'),
+                ('Oscar', 'Cat', CAST('2018-03-22T07:12:00.0000000' AS TIMESTAMP), 'Panleukopenia Virus', 'S-427830689', NULL, 'ashley.flores@animalshelter.com'),
+                ('Oscar', 'Cat', CAST('2018-03-22T13:19:00.0000000' AS TIMESTAMP), 'Rabies', 'K-153175906', NULL, 'ashley.flores@animalshelter.com'),
+                ('Patches', 'Cat', CAST('2019-10-21T09:56:00.0000000' AS TIMESTAMP), 'Leukemia Virus', 'H-151581256', NULL, 'wanda.myers@animalshelter.com'),
+                ('Penelope', 'Cat', CAST('2017-12-22T08:29:00.0000000' AS TIMESTAMP), 'Calicivirus', 'H-233459270', NULL, 'wanda.myers@animalshelter.com'),
+                ('Penelope', 'Cat', CAST('2017-12-22T09:42:00.0000000' AS TIMESTAMP), 'Rabies', 'T-245247914', NULL, 'wanda.myers@animalshelter.com'),
+                ('Penelope', 'Dog', CAST('2017-01-12T12:42:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'M-466473114', NULL, 'ashley.flores@animalshelter.com'),
+                ('Penelope', 'Dog', CAST('2017-01-12T14:39:00.0000000' AS TIMESTAMP), 'Rabies', 'R-249697441', NULL, 'ashley.flores@animalshelter.com'),
+                ('Penelope', 'Dog', CAST('2018-01-12T08:20:00.0000000' AS TIMESTAMP), 'Rabies', 'G-252982705', NULL, 'ashley.flores@animalshelter.com'),
+                ('Poppy', 'Dog', CAST('2018-12-17T09:34:00.0000000' AS TIMESTAMP), 'Rabies', 'W-142526378', NULL, 'robin.murphy@animalshelter.com'),
+                ('Pumpkin', 'Cat', CAST('2019-08-07T11:03:00.0000000' AS TIMESTAMP), 'Herpesvirus', 'R-266824458', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Pumpkin', 'Cat', CAST('2019-08-07T09:09:00.0000000' AS TIMESTAMP), 'Rabies', 'C-414219200', NULL, 'robin.murphy@animalshelter.com'),
+                ('Ranger', 'Dog', CAST('2018-11-28T11:39:00.0000000' AS TIMESTAMP), 'Adenovirus', 'P-300099414', NULL, 'ashley.flores@animalshelter.com'),
+                ('Ranger', 'Dog', CAST('2017-11-28T11:59:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'W-358599750', NULL, 'ashley.flores@animalshelter.com'),
+                ('Ranger', 'Dog', CAST('2018-11-28T07:27:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'K-483728872', NULL, 'wanda.myers@animalshelter.com'),
+                ('Remi / Remy', 'Dog', CAST('2018-11-14T11:49:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'S-337547458', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Roxy', 'Dog', CAST('2019-01-04T07:55:00.0000000' AS TIMESTAMP), 'Adenovirus', 'Q-206330713', NULL, 'ashley.flores@animalshelter.com'),
+                ('Roxy', 'Dog', CAST('2019-01-04T12:58:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'P-281685593', NULL, 'dennis.hill@animalshelter.com'),
+                ('Sadie', 'Cat', CAST('2016-10-06T07:02:00.0000000' AS TIMESTAMP), 'Panleukopenia Virus', 'C-229285711', NULL, 'ashley.flores@animalshelter.com'),
+                ('Sam', 'Cat', CAST('2018-11-09T13:46:00.0000000' AS TIMESTAMP), 'Herpesvirus', 'W-462716953', NULL, 'wanda.myers@animalshelter.com'),
+                ('Sammy', 'Dog', CAST('2018-07-06T12:29:00.0000000' AS TIMESTAMP), 'Adenovirus', 'Q-336566517', NULL, 'wanda.myers@animalshelter.com'),
+                ('Sammy', 'Dog', CAST('2018-07-06T10:58:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'H-245193858', NULL, 'ashley.flores@animalshelter.com'),
+                ('Samson', 'Dog', CAST('2019-11-15T10:11:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'R-497123324', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Shadow', 'Dog', CAST('2016-12-29T08:43:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'T-135880561', NULL, 'wanda.myers@animalshelter.com'),
+                ('Shelby', 'Dog', CAST('2016-04-18T14:04:00.0000000' AS TIMESTAMP), 'Adenovirus', 'L-438221809', NULL, 'ashley.flores@animalshelter.com'),
+                ('Shelby', 'Dog', CAST('2017-04-19T13:33:00.0000000' AS TIMESTAMP), 'Adenovirus', 'U-447076076', NULL, 'wanda.myers@animalshelter.com'),
+                ('Simon', 'Cat', CAST('2018-05-30T14:15:00.0000000' AS TIMESTAMP), 'Calicivirus', 'Q-478638360', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Skye', 'Dog', CAST('2016-08-10T10:51:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'E-236843325', NULL, 'ashley.flores@animalshelter.com'),
+                ('Skye', 'Dog', CAST('2016-08-10T09:53:00.0000000' AS TIMESTAMP), 'Rabies', 'A-171447806', NULL, 'wanda.myers@animalshelter.com'),
+                ('Stella', 'Dog', CAST('2018-01-03T08:20:00.0000000' AS TIMESTAMP), 'Adenovirus', 'K-380962117', NULL, 'ashley.flores@animalshelter.com'),
+                ('Thomas', 'Cat', CAST('2019-05-09T07:25:00.0000000' AS TIMESTAMP), 'Leukemia Virus', 'N-431089273', NULL, 'wayne.carter@animalshelter.com'),
+                ('Thomas', 'Cat', CAST('2019-05-09T12:27:00.0000000' AS TIMESTAMP), 'Rabies', 'Z-112256475', NULL, 'wanda.myers@animalshelter.com'),
+                ('Thor', 'Dog', CAST('2017-03-22T11:45:00.0000000' AS TIMESTAMP), 'Adenovirus', 'U-127749818', NULL, 'ashley.flores@animalshelter.com'),
+                ('Thor', 'Dog', CAST('2019-03-22T14:24:00.0000000' AS TIMESTAMP), 'Adenovirus', 'M-229481627', NULL, 'wanda.myers@animalshelter.com'),
+                ('Thor', 'Dog', CAST('2017-03-22T09:58:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'I-370298118', NULL, 'ashley.flores@animalshelter.com'),
+                ('Thor', 'Dog', CAST('2019-03-22T07:15:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'A-455989697', NULL, 'dennis.hill@animalshelter.com'),
+                ('Tigger', 'Cat', CAST('2018-01-04T13:28:00.0000000' AS TIMESTAMP), 'Leukemia Virus', 'F-321237388', NULL, 'ashley.flores@animalshelter.com'),
+                ('Tigger', 'Cat', CAST('2019-01-04T11:15:00.0000000' AS TIMESTAMP), 'Leukemia Virus', 'P-236394443', NULL, 'gerald.reyes@animalshelter.com'),
+                ('Tigger', 'Cat', CAST('2017-01-04T14:52:00.0000000' AS TIMESTAMP), 'Panleukopenia Virus', 'R-191602716', NULL, 'wanda.myers@animalshelter.com'),
+                ('Tigger', 'Cat', CAST('2019-01-04T08:49:00.0000000' AS TIMESTAMP), 'Panleukopenia Virus', 'T-370701265', NULL, 'dennis.hill@animalshelter.com'),
+                ('Tigger', 'Cat', CAST('2018-01-04T10:27:00.0000000' AS TIMESTAMP), 'Rabies', 'L-382821941', NULL, 'ashley.flores@animalshelter.com'),
+                ('Tigger', 'Cat', CAST('2019-01-04T09:08:00.0000000' AS TIMESTAMP), 'Rabies', 'V-177428557', NULL, 'robin.murphy@animalshelter.com'),
+                ('Walter', 'Dog', CAST('2018-08-27T11:10:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'B-226925017', NULL, 'ashley.flores@animalshelter.com'),
+                ('Walter', 'Dog', CAST('2019-08-27T12:32:00.0000000' AS TIMESTAMP), 'Distemper Virus', 'X-480746334', NULL, 'wayne.carter@animalshelter.com'),
+                ('Walter', 'Dog', CAST('2018-08-27T14:21:00.0000000' AS TIMESTAMP), 'Rabies', 'O-242396268', NULL, 'robin.murphy@animalshelter.com'),
+                ('Walter', 'Dog', CAST('2019-08-27T09:03:00.0000000' AS TIMESTAMP), 'Rabies', 'L-366676246', NULL, 'robin.murphy@animalshelter.com');
+                '''
+            )
+            self.conn.commit()
+            print('data inserted successfully into vaccinations table')
+            self.cursor.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            print('error inserting data into vaccinations table')
 
 
 if __name__=='__main__':
@@ -487,7 +723,10 @@ if __name__=='__main__':
     # animal_shelter.insert_into_animals()
     # animal_shelter.insert_into_persons()
     # animal_shelter.insert_into_staff()
-    animal_shelter.insert_into_staff_roles()
+    # animal_shelter.insert_into_staff_roles()
+    # animal_shelter.insert_into_staff_assignments()
+    # animal_shelter.insert_into_adoptions_table()
+    animal_shelter.insert_into_vaccinations_table()
 
 
 
