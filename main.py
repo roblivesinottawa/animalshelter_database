@@ -173,7 +173,7 @@ class AnimalShelter:
                 '''
                 INSERT INTO	Animals (Name, Species, Primary_Color, Implant_Chip_ID, Breed, Gender, Birth_Date, Pattern, Admission_Date)
                 VALUES
-                --('Abby', 'Dog', 'Black', 'fdfdb6fe-3347-4e80-8c8a-2e3235c6d1de', NULL, 'F', CAST('1999-02-19' AS DATE), 'Tricolor', CAST('2016-07-19' AS DATE)),
+                ('Abby', 'Dog', 'Black', 'fdfdb6fe-3347-4e80-8c8a-2e3235c6d1de', NULL, 'F', CAST('1999-02-19' AS DATE), 'Tricolor', CAST('2016-07-19' AS DATE)),
                 ('Ace', 'Dog', 'Ginger', '33d50c6b-9d2e-4eb1-8171-0466dee4f349', NULL, 'M', CAST('2005-12-19' AS DATE), 'Bicolor', CAST('2019-06-25' AS DATE)),
                 ('Angel', 'Dog', 'Brown', 'f0769a5e-1a11-49f1-ac80-3f40a32ea158', NULL, 'F', CAST('2001-09-19' AS DATE), 'Tuxedo', CAST('2017-02-04' AS DATE)),
                 ('April', 'Rabbit', 'Gray', 'ccfef7e8-6fad-4ba0-81ea-0611dd229e42', NULL, 'F', CAST('2005-01-27' AS DATE), 'Broken', CAST('2019-04-24' AS DATE)),
@@ -284,6 +284,177 @@ class AnimalShelter:
 
 
 
+    def insert_into_persons(self):
+        '''inserts data into persons table'''
+        self.conn = None
+        try:
+            self.conn = psycopg2.connect(**self.params)
+            self.cursor = self.conn.cursor()
+            self.cursor.execute(
+                '''
+                INSERT INTO	Persons (Email, First_Name, Last_Name, Birth_Date, Address, State, City, Zip_Code)
+                VALUES
+                ('adam.brown@gmail.com', 'Adam', 'Brown', CAST('1984-12-22' AS DATE), '41 Hill', 'California', 'Norwalk', '90650'),
+                ('alan.cook@hotmail.com', 'Alan', 'Cook', NULL, '115 Sunset', 'California', 'Inglewood', '90301'),
+                ('albert.wood@gmail.com', 'Albert', 'Wood', CAST('1962-01-30' AS DATE), '780 Sixth', 'California', 'Bell Gardens', '90201'),
+                ('anna.thompson@hotmail.com', 'Anna', 'Thompson', CAST('1997-05-11' AS DATE), '716 Meadow', 'California', 'Los Angeles', '90032'),
+                ('anne.parker@icloud.com', 'Anne', 'Parker', CAST('1973-10-21' AS DATE), '130 Eleventh', 'California', 'Carson', '90248'),
+                ('ashley.adams@icloud.com', 'Ashley', 'Adams', CAST('1984-02-23' AS DATE), '101 North', 'California', 'Carson', '90749'),
+                ('ashley.flores@animalshelter.com', 'Ashley', 'Flores', CAST('1976-04-08' AS DATE), '282 North', 'California', 'Carson', '90749'),
+                ('benjamin.edwards@icloud.com', 'Benjamin', 'Edwards', CAST('1990-01-08' AS DATE), '578 Dogwood', 'California', 'Manhattan Beach', '90266'),
+                ('bonnie.davis@icloud.com', 'Bonnie', 'Davis', CAST('1951-01-29' AS DATE), '193 Lake', 'California', 'West Hollywood', '90048'),
+                ('brenda.martin@gmail.com', 'Brenda', 'Martin', CAST('1952-04-16' AS DATE), '129 South', 'California', 'Santa Monica', '90403'),
+                ('bruce.cook@icloud.com', 'Bruce', 'Cook', CAST('1953-01-12' AS DATE), '667 Church', 'California', 'South Whittier', '90605'),
+                ('bruce.harris@hotmail.com', 'Bruce', 'Harris', CAST('1957-11-26' AS DATE), '370 Church', 'California', 'South Whittier', '90605'),
+                ('carol.mitchell@gmail.com', 'Carol', 'Mitchell', CAST('1994-02-11' AS DATE), '506 Cherry', 'California', 'Torrance', '90503'),
+                ('carolyn.nelson@icloud.com', 'Carolyn', 'Nelson', CAST('1985-11-27' AS DATE), '39 Third', 'California', 'Whittier', '90605'),
+                ('catherine.howard@icloud.com', 'Catherine', 'Howard', CAST('1952-03-07' AS DATE), '806 Second', 'California', 'Los Angeles', '90068'),
+                ('catherine.nguyen@hotmail.com', 'Catherine', 'Nguyen', CAST('1946-03-29' AS DATE), '882 Second', 'California', 'Los Angeles', '90068'),
+                ('charles.phillips@gmail.com', 'Charles', 'Phillips', CAST('1980-05-11' AS DATE), '812 Hill', 'California', 'Long Beach', '90813'),
+                ('cynthia.campbell@hotmail.com', 'Cynthia', 'Campbell', CAST('1969-01-02' AS DATE), '902 Eighth', 'California', 'Inglewood', '90307'),
+                ('denise.ortiz@yahoo.com', 'Denise', 'Ortiz', CAST('1982-04-01' AS DATE), '996 Cherry', 'California', 'Santa Monica', '90407'),
+                ('dennis.hill@animalshelter.com', 'Dennis', 'Hill', NULL, '941 Thirteenth', 'California', 'Gardena', '90247'),
+                ('diane.thompson@hotmail.com', 'Diane', 'Thompson', CAST('1998-06-25' AS DATE), '762 Church', 'California', 'Willowbrook', '90059'),
+                ('donna.brooks@hotmail.com', 'Donna', 'Brooks', CAST('1966-04-05' AS DATE), '972 Cherry', 'California', 'Los Angeles', '90068'),
+                ('doris.young@icloud.com', 'Doris', 'Young', CAST('1954-02-15' AS DATE), '511 Ridge', 'California', 'Torrance', '90501'),
+                ('elizabeth.clark@icloud.com', 'Elizabeth', 'Clark', CAST('1949-02-23' AS DATE), '443 Twelfth', 'California', 'Rancho Palos Verdes', '90275'),
+                ('emily.perez@gmail.com', 'Emily', 'Perez', CAST('1971-08-25' AS DATE), '759 Dogwood', 'California', 'Lynwood', '90262'),
+                ('eugene.howard@icloud.com', 'Eugene', 'Howard', CAST('1958-01-20' AS DATE), '647 Eleventh', 'California', 'Inglewood', '90309'),
+                ('evelyn.rodriguez@outlook.com', 'Evelyn', 'Rodriguez', CAST('1965-04-10' AS DATE), '793 Sixth', 'California', 'West Rancho Dominguez', '90059'),
+                ('frances.cook@yahoo.com', 'Frances', 'Cook', CAST('1973-08-13' AS DATE), '351 Forest', 'California', 'Compton', '90220'),
+                ('frances.hill@animalshelter.com', 'Frances', 'Hill', CAST('1953-01-29' AS DATE), '406 Forest', 'California', 'Compton', '90220'),
+                ('frank.smith@icloud.com', 'Frank', 'Smith', CAST('1997-09-20' AS DATE), '390 Jefferson', 'California', 'Walnut Park', '90255'),
+                ('fred.james@gmail.com', 'Fred', 'James', CAST('1972-08-08' AS DATE), '293 Second', 'California', 'Los Angeles', '90069'),
+                ('fred.patel@gmail.com', 'Fred', 'Patel', CAST('1953-03-10' AS DATE), '899 Second', 'California', 'Los Angeles', '90069'),
+                ('george.nzalez@icloud.com', 'George', 'nzalez', CAST('1952-12-11' AS DATE), '209 Cedar', 'California', 'Los Angeles', '90004'),
+                ('george.scott@hotmail.com', 'George', 'Scott', CAST('1982-05-03' AS DATE), '424 Cedar', 'California', 'Los Angeles', '90004'),
+                ('gerald.reyes@animalshelter.com', 'Gerald', 'Reyes', CAST('1956-02-10' AS DATE), '761 Eighth', 'California', 'Long Beach', '90853'),
+                ('gerald.thompson@icloud.com', 'Gerald', 'Thompson', CAST('1994-04-07' AS DATE), '631 Eighth', 'California', 'Long Beach', '90853'),
+                ('gloria.wright@hotmail.com', 'Gloria', 'Wright', CAST('1947-12-21' AS DATE), '439 Fourteenth', 'California', 'Whittier', '90603'),
+                ('grery.evans@icloud.com', 'Grery', 'Evans', CAST('1967-12-22' AS DATE), '481 Seventh', 'California', 'East Rancho Dominguez', '90221'),
+                ('grery.james@icloud.com', 'Grery', 'James', CAST('1994-09-24' AS DATE), '337 Seventh', 'California', 'East Rancho Dominguez', '90221'),
+                ('harold.clark@icloud.com', 'Harold', 'Clark', CAST('1987-09-26' AS DATE), '771 Ninth', 'California', 'Whittier', '90601'),
+                ('harry.wilson@yahoo.com', 'Harry', 'Wilson', CAST('1976-02-06' AS DATE), '886 Elm', 'California', 'Compton', '90223'),
+                ('heather.turner@yahoo.com', 'Heather', 'Turner', CAST('1974-09-11' AS DATE), '909 Twelfth', 'California', 'Paramount', '90723'),
+                ('howard.bailey@gmail.com', 'Howard', 'Bailey', CAST('1995-11-13' AS DATE), '1000 Adams', 'California', 'View Park-Windsor Hills', '90056'),
+                ('irene.mendoza@gmail.com', 'Irene', 'Mendoza', CAST('1985-11-23' AS DATE), '84 Elm', 'California', 'Florence-Graham', '90052'),
+                ('jacqueline.phillips@gmail.com', 'Jacqueline', 'Phillips', NULL, '519 Johnson', 'California', 'Long Beach', '90853'),
+                ('james.ramos@hotmail.com', 'James', 'Ramos', CAST('1962-08-07' AS DATE), '968 Cherry', 'California', 'Carson', '90745'),
+                ('janet.evans@gmail.com', 'Janet', 'Evans', CAST('1980-12-07' AS DATE), '519 Oak', 'California', 'Lakewood', '90711'),
+                ('jeffrey.mez@gmail.com', 'Jeffrey', 'mez', CAST('1961-04-17' AS DATE), '51 Cedar', 'California', 'Whittier', '90603'),
+                ('jerry.cox@icloud.com', 'Jerry', 'Cox', CAST('1958-04-04' AS DATE), '353 Johnson', 'California', 'South Whittier', '90605'),
+                ('jerry.mitchell@icloud.com', 'Jerry', 'Mitchell', CAST('1981-09-22' AS DATE), '732 Johnson', 'California', 'South Whittier', '90605'),
+                ('jesse.cox@yahoo.com', 'Jesse', 'Cox', CAST('1990-07-26' AS DATE), '544 North', 'California', 'South Gate', '90280'),
+                ('jesse.myers@gmail.com', 'Jesse', 'Myers', CAST('1975-02-14' AS DATE), '684 North', 'California', 'South Gate', '90280'),
+                ('jessica.ward@icloud.com', 'Jessica', 'Ward', CAST('1953-11-28' AS DATE), '515 West', 'California', 'Downey', '90242'),
+                ('jimmy.jones@yahoo.com', 'Jimmy', 'Jones', NULL, '226 Fourth', 'California', 'Inglewood', '90303'),
+                ('joan.cooper@icloud.com', 'Joan', 'Cooper', CAST('1986-04-03' AS DATE), '173 West', 'California', 'Compton', '90221'),
+                ('jonathan.mez@hotmail.com', 'Jonathan', 'mez', CAST('1989-07-09' AS DATE), '319 Johnson', 'California', 'Los Angeles', '90069'),
+                ('joyce.nzalez@hotmail.com', 'Joyce', 'nzalez', CAST('1970-07-02' AS DATE), '204 Cedar', 'California', 'View Park-Windsor Hills', '90043'),
+                ('julia.flores@yahoo.com', 'Julia', 'Flores', CAST('1988-01-12' AS DATE), '442 Lake view', 'California', 'Bell Gardens', '90201'),
+                ('julie.adams@gmail.com', 'Julie', 'Adams', CAST('1957-01-31' AS DATE), '133 Hill', 'California', 'Gardena', '90247'),
+                ('julie.price@icloud.com', 'Julie', 'Price', CAST('1962-11-29' AS DATE), '2 Hill', 'California', 'Gardena', '90247'),
+                ('justin.ruiz@hotmail.com', 'Justin', 'Ruiz', CAST('1991-07-13' AS DATE), '157 Church', 'California', 'Gardena', '90247'),
+                ('justin.sanchez@yahoo.com', 'Justin', 'Sanchez', CAST('1992-02-03' AS DATE), '415 Church', 'California', 'Gardena', '90247'),
+                ('karen.smith@icloud.com', 'Karen', 'Smith', CAST('1948-03-01' AS DATE), '110 North', 'California', 'West Rancho Dominguez', '90220'),
+                ('katherine.murphy@gmail.com', 'Katherine', 'Murphy', CAST('1957-05-15' AS DATE), '191 Lincoln', 'California', 'Commerce', '90022'),
+                ('katherine.price@gmail.com', 'Katherine', 'Price', CAST('1997-09-23' AS DATE), '949 Lincoln', 'California', 'Commerce', '90022'),
+                ('kathryn.lopez@icloud.com', 'Kathryn', 'Lopez', CAST('1990-08-30' AS DATE), '622 Madison', 'California', 'Los Angeles', '90034'),
+                ('kathy.thomas@gmail.com', 'Kathy', 'Thomas', CAST('1952-04-08' AS DATE), '427 Main', 'California', 'Lakewood', '90712'),
+                ('kelly.allen@hotmail.com', 'Kelly', 'Allen', NULL, '651 Hickory', 'California', 'Long Beach', '90840'),
+                ('kevin.diaz@hotmail.com', 'Kevin', 'Diaz', CAST('1974-01-18' AS DATE), '262 Jackson', 'California', 'Torrance', '90509'),
+                ('kimberly.morgan@gmail.com', 'Kimberly', 'Morgan', CAST('1956-01-29' AS DATE), '2 Washington', 'California', 'Torrance', '90503'),
+                ('laura.young@gmail.com', 'Laura', 'Young', CAST('1987-05-19' AS DATE), '29 First', 'California', 'Torrance', '90503'),
+                ('linda.kelly@gmail.com', 'Linda', 'Kelly', CAST('1997-04-26' AS DATE), '51 Seventh', 'California', 'Compton', '90221'),
+                ('lisa.perez@icloud.com', 'Lisa', 'Perez', CAST('1949-08-08' AS DATE), '502 River', 'California', 'Hawthorne', '90310'),
+                ('lori.smith@icloud.com', 'Lori', 'Smith', CAST('1977-02-11' AS DATE), '324 Sixth', 'California', 'Signal Hill', '90755'),
+                ('margaret.campbell@hotmail.com', 'Margaret', 'Campbell', CAST('1960-11-03' AS DATE), '424 Eleventh', 'California', 'Los Angeles', '90247'),
+                ('margaret.hall@gmail.com', 'Margaret', 'Hall', CAST('1994-09-15' AS DATE), '344 Eleventh', 'California', 'Los Angeles', '90247'),
+                ('matthew.lopez@gmail.com', 'Matthew', 'Lopez', CAST('1988-02-15' AS DATE), '38 Dogwood', 'California', 'Torrance', '90510'),
+                ('matthew.ward@icloud.com', 'Matthew', 'Ward', CAST('1949-12-04' AS DATE), '240 Dogwood', 'California', 'Torrance', '90510'),
+                ('melissa.lopez@gmail.com', 'Melissa', 'Lopez', NULL, '43 Park', 'California', 'Bell Gardens', '90202'),
+                ('melissa.moore@icloud.com', 'Melissa', 'Moore', CAST('1960-06-27' AS DATE), '156 Park', 'California', 'Bell Gardens', '90202'),
+                ('mildred.gray@yahoo.com', 'Mildred', 'Gray', CAST('1949-03-23' AS DATE), '193 Sixth', 'California', 'Long Beach', '90847'),
+                ('nancy.howard@hotmail.com', 'Nancy', 'Howard', CAST('1970-03-15' AS DATE), '587 Hickory', 'California', 'Carson', '90224'),
+                ('nicholas.rivera@icloud.com', 'Nicholas', 'Rivera', CAST('1993-09-07' AS DATE), '129 Adams', 'California', 'Long Beach', '90853'),
+                ('nicole.evans@gmail.com', 'Nicole', 'Evans', CAST('1954-07-02' AS DATE), '608 Jefferson', 'California', 'Signal Hill', '90755'),
+                ('nicole.mendoza@gmail.com', 'Nicole', 'Mendoza', NULL, '76 Jefferson', 'California', 'Signal Hill', '90755'),
+                ('patricia.wright@icloud.com', 'Patricia', 'Wright', CAST('1953-07-18' AS DATE), '486 Chestnut', 'California', 'Santa Fe Springs', '90670'),
+                ('patrick.hughes@animalshelter.com', 'Patrick', 'Hughes', CAST('1988-10-11' AS DATE), '660 Spruce', 'California', 'La Mirada', '90638'),
+                ('peter.smith@hotmail.com', 'Peter', 'Smith', CAST('1986-08-27' AS DATE), '56 Main', 'California', 'Los Angeles', '90004'),
+                ('phyllis.davis@icloud.com', 'Phyllis', 'Davis', CAST('1993-10-20' AS DATE), '508 Eighth', 'California', 'Santa Monica', '90408'),
+                ('phyllis.moore@gmail.com', 'Phyllis', 'Moore', CAST('1988-09-22' AS DATE), '583 Eighth', 'California', 'Santa Monica', '90408'),
+                ('randy.bailey@icloud.com', 'Randy', 'Bailey', CAST('1973-07-13' AS DATE), '980 Oak', 'California', 'Compton', '90223'),
+                ('richard.castillo@icloud.com', 'Richard', 'Castillo', CAST('1978-12-26' AS DATE), '287 River', 'California', 'Culver City', '90233'),
+                ('robin.miller@yahoo.com', 'Robin', 'Miller', CAST('1965-12-11' AS DATE), '216 Hill', 'California', 'East Los Angeles', '90022'),
+                ('robin.murphy@animalshelter.com', 'Robin', 'Murphy', CAST('1974-10-13' AS DATE), '673 Hill', 'California', 'East Los Angeles', '90022'),
+                ('roger.adams@hotmail.com', 'Roger', 'Adams', CAST('1947-05-09' AS DATE), '639 West', 'California', 'Los Angeles', '90031'),
+                ('roy.rogers@hotmail.com', 'Roy', 'Rogers', CAST('1958-07-29' AS DATE), '836 Twelfth', 'California', 'Los Angeles', '90039'),
+                ('ruby.lopez@yahoo.com', 'Ruby', 'Lopez', CAST('1979-04-05' AS DATE), '808 Cedar', 'California', 'Long Beach', '90804'),
+                ('ryan.garcia@hotmail.com', 'Ryan', 'Garcia', CAST('1975-03-09' AS DATE), '787 Wilson', 'California', 'Downey', '90239'),
+                ('ryan.hill@icloud.com', 'Ryan', 'Hill', CAST('1960-11-03' AS DATE), '105 Wilson', 'California', 'Downey', '90239'),
+                ('ryan.jackson@icloud.com', 'Ryan', 'Jackson', CAST('1947-10-07' AS DATE), '487 Wilson', 'California', 'Downey', '90239'),
+                ('ryan.wright@hotmail.com', 'Ryan', 'Wright', NULL, '600 Wilson', 'California', 'Downey', '90239'),
+                ('samuel.baker@gmail.com', 'Samuel', 'Baker', CAST('1980-01-17' AS DATE), '889 Maple', 'California', 'Los Angeles', '90247'),
+                ('samuel.morales@icloud.com', 'Samuel', 'Morales', NULL, '896 Maple', 'California', 'Los Angeles', '90247'),
+                ('sara.nelson@icloud.com', 'Sara', 'Nelson', CAST('1990-10-15' AS DATE), '340 Fifth', 'California', 'View Park-Windsor Hills', '90043'),
+                ('scott.baker@gmail.com', 'Scott', 'Baker', CAST('1986-01-11' AS DATE), '190 Lake view', 'California', 'Los Angeles', '90089'),
+                ('scott.gutierrez@gmail.com', 'Scott', 'Gutierrez', CAST('1985-11-26' AS DATE), '993 Lake view', 'California', 'Los Angeles', '90089'),
+                ('sean.nelson@icloud.com', 'Sean', 'Nelson', CAST('1986-04-28' AS DATE), '339 Ninth', 'California', 'Los Angeles', '90034'),
+                ('sharon.davis@animalshelter.com', 'Sharon', 'Davis', CAST('1988-09-25' AS DATE), '372 Seventh', 'California', 'Los Angeles', '90068'),
+                ('sharon.thompson@gmail.com', 'Sharon', 'Thompson', CAST('1970-06-24' AS DATE), '688 Seventh', 'California', 'Los Angeles', '90068'),
+                ('shirley.williams@outlook.com', 'Shirley', 'Williams', CAST('1966-08-17' AS DATE), '11 Lincoln', 'California', 'Santa Monica', '90408'),
+                ('stephanie.mez@icloud.com', 'Stephanie', 'mez', CAST('1994-06-26' AS DATE), '539 West', 'California', 'Long Beach', '90899'),
+                ('susan.murphy@icloud.com', 'Susan', 'Murphy', CAST('1961-08-02' AS DATE), '246 Spruce', 'California', 'Long Beach', '90808'),
+                ('theresa.carter@icloud.com', 'Theresa', 'Carter', CAST('1968-08-27' AS DATE), '401 Lincoln', 'California', 'Long Beach', '90831'),
+                ('timothy.anderson@gmail.com', 'Timothy', 'Anderson', CAST('1973-05-08' AS DATE), '33 Seventh', 'California', 'Commerce', '90023'),
+                ('virginia.baker@gmail.com', 'Virginia', 'Baker', CAST('1990-11-25' AS DATE), '6 Jefferson', 'California', 'Santa Monica', '90410'),
+                ('walter.edwards@icloud.com', 'Walter', 'Edwards', CAST('1963-09-04' AS DATE), '137 Church', 'California', 'Pico Rivera', '90661'),
+                ('wanda.gray@icloud.com', 'Wanda', 'Gray', CAST('1963-03-18' AS DATE), '946 Cedar', 'California', 'Los Angeles', '90710'),
+                ('wanda.myers@animalshelter.com', 'Wanda', 'Myers', CAST('1975-02-05' AS DATE), '663 Cedar', 'California', 'Los Angeles', '90710'),
+                ('wayne.carter@animalshelter.com', 'Wayne', 'Carter', CAST('1988-03-15' AS DATE), '341 Washington', 'California', 'Inglewood', '90309'),
+                ('wayne.turner@icloud.com', 'Wayne', 'Turner', CAST('1966-02-18' AS DATE), '350 Washington', 'California', 'Inglewood', '90309');
+                '''
+            )
+            self.conn.commit()
+            print('data inserted successfully into persons table')
+            self.cursor.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            print('error inserting data into persons table')
+
+
+    def insert_into_staff(self):
+        '''inserts data into staff table'''
+        self.conn = None
+        try:
+            self.conn = psycopg2.connect(**self.params)
+            self.cursor = self.conn.cursor()
+            self.cursor.execute(
+                '''
+                INSERT INTO	Staff (Email, Hire_Date)
+                VALUES
+                ('ashley.flores@animalshelter.com', CAST('2016-01-01' AS DATE)),
+                ('dennis.hill@animalshelter.com', CAST('2018-10-07' AS DATE)),
+                ('frances.hill@animalshelter.com', CAST('2016-01-01' AS DATE)),
+                ('gerald.reyes@animalshelter.com', CAST('2018-03-20' AS DATE)),
+                ('patrick.hughes@animalshelter.com', CAST('2018-12-15' AS DATE)),
+                ('robin.murphy@animalshelter.com', CAST('2018-08-15' AS DATE)),
+                ('sharon.davis@animalshelter.com', CAST('2016-01-01' AS DATE)),
+                ('wanda.myers@animalshelter.com', CAST('2016-01-01' AS DATE)),
+                ('wayne.carter@animalshelter.com', CAST('2018-04-02' AS DATE));
+                '''
+            )
+            self.conn.commit()
+            print('data inserted successfully into staff table')
+            self.cursor.close()
+        except (Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            print('error inserting data into staff table')
+
+
+
+
 
 if __name__=='__main__':
     animal_shelter = AnimalShelter()
@@ -291,6 +462,8 @@ if __name__=='__main__':
     # animal_shelter.create_database('animalshelter')
     # animal_shelter.create_tables()
     # animal_shelter.insert_into_schemas()
-    animal_shelter.insert_into_animals()
+    # animal_shelter.insert_into_animals()
+    # animal_shelter.insert_into_persons()
+    animal_shelter.insert_into_staff()
 
 
