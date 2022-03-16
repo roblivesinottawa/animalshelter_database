@@ -1,3 +1,10 @@
-config.py
-database.ini
-../datascience.py
+files
+animalshelter-workspace/bin
+animalshelter-workspace/include
+animalshelter-workspace/lib
+animalshelter-workspace/pyvenv.cfg
+animalshelter-workspace/database.ini
+animalshelter-workspace/config.py
+__pycache__
+
+
